@@ -51,3 +51,19 @@ Daftar perangkat PCI dapat dilihat dengan perintah berikut:
 ```
 ~$ lspci
 ```
+
+Jika dijalankan, maka tampilan terminal menjadi seperti berikut:
+![output lspci](images/Screenshot%202026-02-18%20114936.png "perangkat PCI")
+Informasi yang dditampilkan berupa kartu grafis, kontrol penyimpanan virtual, dan perangkat lunak yang memungkinkan komunikasi antara windows dan linux
+
+## Lihat perangkat PCI beserta kernel yang digunakan
+
+Jika daftar perangkat PCI dilihat dengan `~$ lspci` maka untuk melihat perangkat PCI beserta kernel yang digunakan, maka perintah yang digunakan adalah sebagai berikut:
+```
+~$ lspci -nnk
+```
+
+Jika dijalankan, terminal akan menampilkan teks seperti berikut:
+~[output lspci nnk](images/Screenshot%202026-02-18%20115001.png "Perangkat PCI dengan kernel")
+
+tampilan terminal akan sama dengan perintah `~$ lspci`, namun dengan tambahan kernel yang digunakan setiap perangkat
