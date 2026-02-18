@@ -14,6 +14,7 @@ praktikum ini bertujuan untuk memahami spesifikasi CPU dan memori pada VM
 
 ### Melihat spesifikasi CPU
 Spesifikasi CPU dapat dilihat dengan perintah sebagai berikut
-'''
+```
 ~$ lscpu
-'''
+```
+
