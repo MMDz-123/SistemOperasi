@@ -17,4 +17,5 @@ Spesifikasi CPU dapat dilihat dengan perintah sebagai berikut
 ```
 ~$ lscpu
 ```
-
+Setelah perintah dijalankan, maka akan muncul status CPU seperti berikut:
+![output perintah lscpu](images/perintah_lscpu.png "output perintah cpu")
