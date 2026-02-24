@@ -53,10 +53,12 @@ Daftar perangkat PCI dapat dilihat dengan perintah berikut:
 ```
 
 Jika dijalankan, maka tampilan terminal menjadi seperti berikut:
+
 ![output lspci](images/Screenshot%202026-02-18%20114936.png "perangkat PCI")
+
 Informasi yang dditampilkan berupa kartu grafis, kontrol penyimpanan virtual, dan perangkat lunak yang memungkinkan komunikasi antara windows dan linux
 
-## Lihat perangkat PCI beserta kernel yang digunakan
+### Lihat perangkat PCI beserta kernel yang digunakan
 
 Jika daftar perangkat PCI dilihat dengan `~$ lspci` maka untuk melihat perangkat PCI beserta kernel yang digunakan, maka perintah yang digunakan adalah sebagai berikut:
 ```
@@ -64,6 +66,49 @@ Jika daftar perangkat PCI dilihat dengan `~$ lspci` maka untuk melihat perangkat
 ```
 
 Jika dijalankan, terminal akan menampilkan teks seperti berikut:
-~[output lspci nnk](images/Screenshot%202026-02-18%20115001.png "Perangkat PCI dengan kernel")
+
+![output lspci nnk](images/Screenshot%202026-02-18%20115001.png "Perangkat PCI dengan kernel")
 
 tampilan terminal akan sama dengan perintah `~$ lspci`, namun dengan tambahan kernel yang digunakan setiap perangkat
+
+### Fokus pada NIC (Ethernet) untuk mencari driver
+Untuk mencari driver *ethernet* perintah yang dapat digunakan adalah sebagai berikut:
+```
+~$lspci - nnk | grep - A3 -i ethernet
+```
+Namun, jika menggunakan WSL, perintah tersebut tidak akan menampilkan apa-apa karena WSL sendiri adalah *virtual machine* yang terisolasi sehingga tidak dapat melihat perangkat keras PCI. Namun, untuk melihat perangkat keras ethernet dengan WSL, perintah yang dapat digunakan adalah:
+```
+~$sudo lshw -C network
+```
+yang akan menampilkan output seperti berikut:
+
+![output slhw -C network](<images/Screenshot 2026-02-24 190541.png>)
+
+Perlu dicatat, perintah `~$sudo lshw -C network` hanya akan menampilkan abstraksi hardware, tidak menampilkan detail hardware seperti merk, model, dll.
+
+### Lihat perangkat USB
+Untuk melihat daftar perangkat USB yang terpasang pada komputer, perintah yang dijalankan adalah:
+```
+~$lsusb
+```
+Perlu dicatat bahwa WSL tidak memiliki akses langsung ke perangkat keras apapun yang terpasang di komputer sehingga tanpa proses lanjutan beberapa perintah tidak akan mengeluarkan output sama sekali.
+
+### Latihan 2.2
+Temukan 1 perangkat PCI (misal NIC) dan tuliskan: Vendor:Device ID (angka heksadesimal), nama driver/modul kernel, dan deskripsi singkat fungsinya.
+
+## Jawab
+Perangkat: SCSI storage controller: Red Hat, Inc. Virtio 1.0 console
+Vendor: 5582:00:00:0
+Nama: Virtio
+Fungsi: virtualisasi yang digunakan WSL agar linux bisa mengakses penyimpanan virtual
+
+## Praktikum 2.3 Identifikasi Storage dan Filesystem
+
+Praktikum ini beertujuan untuk memahami disk/partisi dan filesystem yang terpasang di sistem
+
+### Lihat daftar partisi
+Untuk melihat daftar pembagian disk, perintah yand dapat digunakan adalah sebagai berikut:
+```
+~$lsblk -f
+```
+Output yang tampil 
