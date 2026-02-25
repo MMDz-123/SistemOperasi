@@ -111,4 +111,75 @@ Untuk melihat daftar pembagian disk, perintah yand dapat digunakan adalah sebaga
 ```
 ~$lsblk -f
 ```
-Output yang tampil 
+Output yang tampil akan menjadi seperti berikut:
+![Output lsblk -f](<images/Screenshot 2026-02-25 062835.png>)
+Perintah akan menampilkan seluruh pembagian/partisi disk yang sudah ditetapkan sebelumnya. Disini, disk yang ditampilkan adalah penyimpanan virtual bukan penyimpanan komputer seluruhnya
+
+### Menampilkan UUID dan tipe filesistem
+Untuk menampilkan UUID dari setiap bagian partisi disk, perintah yang digunakan asalah sebagai berikut:
+```
+~$sudo blkid
+```
+Perintah tersebut adalah salah satu perintah sudo yang mengharuskan pengguna memasukkan *password* sudo. Setelah perintah dijalankan, output yang keluar akan menjadi seperti berikut:
+
+![output sudo blkid](<images/Screenshot 2026-02-25 063420.png>)
+
+Informasi yang ditampulkan berupa `UUID` atau *Universally Unique Identifier* yang berfungsi untuk mengidentifikasi partisi agar tidak tertukar. `BLOCK_SIZE` adalah ukuran blok sistem. Tertulis 4096 byte yang merupakan standar untuk file system. `TYPE` adalah jenis partisi, `ext4` adalah jenis file standat Linux, sementara `SWAP` adalah memori(RAM) virtual yang ditujukan sebagai RAM cadangan jika RAM utama telah penuh.
+
+### Lihat mount point untuk root filesystem
+Untuk melihat mounting point untuk root filesystem, perintah yang digunakan adalah: 
+```
+~$findmnt /
+```
+Perintah tersebut akan menampilkan titik mounting(pemasangan) filesystem. Tanda `/` berfungsi agar output hanya menampilkan mounting point khusus root filesystem. Tampilan terminal akan menjadi seperti berikut:
+
+![Mounting Point](<images/Screenshot 2026-02-25 065436.png>)
+
+## Praktikum 2.4 Melihat Modul Aktif dan Informasinya
+
+Praktikum ini bertujuan untuk mengenal modul aktif beserta keterkaitannya dengan perangkat
+
+### Cek versi kernel
+Perintah untuk menampilkan kernel yang digunakan Linux adalah sebagai berikut:
+```
+~$uname -r
+```
+Setelah menjalankan perintah, terminal akan menampilkan versi kernel yang berjalan. Tampilan akan menjadi seperti berikut:
+
+[Versi Kernel](report.md)
+
+### Tampilkan daftar modul aktif
+Untuk menampilkan modul yang sedang aktif. Perintahnya sebagai berikut:
+```
+~$lsmod | head
+```
+Setelah perintah dijalankan, daftar modul yang aktif, ukuran, hingga penggunaannya akan tampil seperti berikut:
+
+![Daftar Modul](<images/Screenshot 2026-02-25 072024.png>)
+
+### Lihat detail salah satu modul
+Perintah ini digunakan untuk melihat detail salah satu modul. Pada praktikum ini, modul yang akan dilihat adalah `loop`. Perintahnya adalah:
+```
+~$modinfo <modul>
+```
+Saat perintah dijalankan, detail dari modul akan tampil seperti gambar berikut:
+
+![Detail Modul Loop](<images/Screenshot 2026-02-25 072607.png>)
+
+### Muat modul (jika belum aktif), lalu verifikasi
+Pada praktikum ini, modul akan diaktifkan lalu di-verifikasi. Perintah yang digunakan ada dua, yaitu:
+```
+~$sudo modprobe loop
+~$lsmod | grep -i loop
+```
+Dikarenakan pada praktikum ini dilakukan di WSL, Linux tidak dapat mengubah modul yang aktif sehingga pada terminal tidak ada output yang tampil
+
+### Lihat pesan terbaru dari kernel
+Untuk melihat pesan (log) dari kernel, perintah yang digunakan adalah
+```
+~$dmesg -T | tail -n 20
+```
+Pesan yang ditampilkan hanya 20 pesan terakhir yang tampil seperti gambar berikut:
+
+![Output Pesan Kernel](<images/Screenshot 2026-02-25 074551.png>)
+
