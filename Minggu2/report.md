@@ -183,3 +183,4 @@ Pesan yang ditampilkan hanya 20 pesan terakhir yang tampil seperti gambar beriku
 
 ![Output Pesan Kernel](<images/Screenshot 2026-02-25 074551.png>)
 
+## Praktikum 2.5 Konfigurasi Auto-load dan Blacklist
